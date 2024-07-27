@@ -9,5 +9,11 @@ namespace ExamenPOO2.API.Database.Entities
 		[Required(ErrorMessage = "Es requerido ingresar el campo de name.")]
 		[Column("name")]
 		public string Name { get; set; }
+
+		[Required(ErrorMessage = "Es requerido ingresar el campo de identify number.")]
+		[Column("identify_number")]
+		public string IdentityNumber { get; set; }
+
+		public ICollection<LoanEntity> Loans { get; set; }
 	}
 }

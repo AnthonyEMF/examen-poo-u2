@@ -15,7 +15,7 @@ namespace ExamenPOO2.API.Helpers
 
 		private void MapsForLoans()
 		{
-			CreateMap<LoanEntity, LoanDto>();
+			CreateMap<LoanEntity, LoanCreateDto>();
 			CreateMap<LoanCreateDto, LoanEntity>();
 			CreateMap<LoanEditDto, LoanEntity>();
 		}

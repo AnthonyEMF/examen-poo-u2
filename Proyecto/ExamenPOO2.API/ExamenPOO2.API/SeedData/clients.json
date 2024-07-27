@@ -1,6 +1,7 @@
 [
   {
     "Id": "9b058d34-936a-46b2-a7a3-4c4497b51f1f",
-    "Name": "Juan Perez"
+    "Name": "Juan Perez",
+    "IdentifyNumber": "123456789"
   }
 ]

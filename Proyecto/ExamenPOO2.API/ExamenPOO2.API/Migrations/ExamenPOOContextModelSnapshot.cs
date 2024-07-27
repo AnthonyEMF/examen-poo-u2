@@ -37,31 +37,37 @@ namespace ExamenPOO2.API.Migrations
                         .HasColumnType("int")
                         .HasColumnName("installment_number");
 
-                    b.Property<int>("Interest")
-                        .HasColumnType("int")
+                    b.Property<double>("Interest")
+                        .HasColumnType("float")
                         .HasColumnName("interest");
 
-                    b.Property<int>("LevelPaymentWithSVSD")
-                        .HasColumnType("int")
+                    b.Property<double>("LevelPaymentWithSVSD")
+                        .HasColumnType("float")
                         .HasColumnName("levelpayment_with_SVSD");
 
-                    b.Property<int>("LevelPaymentWithoutSVSD")
-                        .HasColumnType("int")
+                    b.Property<double>("LevelPaymentWithoutSVSD")
+                        .HasColumnType("float")
                         .HasColumnName("levelpayment_without_SVSD");
+
+                    b.Property<Guid>("LoanId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("loan_id");
 
                     b.Property<DateTime>("PaymentDate")
                         .HasColumnType("datetime2")
                         .HasColumnName("payment_date");
 
-                    b.Property<int>("Principal")
-                        .HasColumnType("int")
+                    b.Property<double>("Principal")
+                        .HasColumnType("float")
                         .HasColumnName("principal");
 
-                    b.Property<int>("PrincipalBalance")
-                        .HasColumnType("int")
+                    b.Property<double>("PrincipalBalance")
+                        .HasColumnType("float")
                         .HasColumnName("principal_balance");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("LoanId");
 
                     b.ToTable("amortizations", "dbo");
                 });
@@ -72,6 +78,11 @@ namespace ExamenPOO2.API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("id");
+
+                    b.Property<string>("IdentityNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("identify_number");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -90,8 +101,12 @@ namespace ExamenPOO2.API.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("id");
 
-                    b.Property<int>("CommissionRate")
-                        .HasColumnType("int")
+                    b.Property<Guid>("ClientId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("client_id");
+
+                    b.Property<double>("CommissionRate")
+                        .HasColumnType("float")
                         .HasColumnName("commission_rate");
 
                     b.Property<DateTime>("DisbursementDate")
@@ -102,22 +117,13 @@ namespace ExamenPOO2.API.Migrations
                         .HasColumnType("datetime2")
                         .HasColumnName("first_payment_date");
 
-                    b.Property<int>("IdentityNumber")
-                        .HasColumnType("int")
-                        .HasColumnName("identity_number");
-
-                    b.Property<int>("InterestRate")
-                        .HasColumnType("int")
+                    b.Property<double>("InterestRate")
+                        .HasColumnType("float")
                         .HasColumnName("interest_rate");
 
-                    b.Property<int>("LoanAmount")
-                        .HasColumnType("int")
+                    b.Property<double>("LoanAmount")
+                        .HasColumnType("float")
                         .HasColumnName("loan_amount");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("name");
 
                     b.Property<int>("Term")
                         .HasColumnType("int")
@@ -125,7 +131,41 @@ namespace ExamenPOO2.API.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ClientId");
+
                     b.ToTable("loans", "dbo");
+                });
+
+            modelBuilder.Entity("ExamenPOO2.API.Database.Entities.AmortizationEntity", b =>
+                {
+                    b.HasOne("ExamenPOO2.API.Database.Entities.LoanEntity", "Loan")
+                        .WithMany("AmortizationPlan")
+                        .HasForeignKey("LoanId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Loan");
+                });
+
+            modelBuilder.Entity("ExamenPOO2.API.Database.Entities.LoanEntity", b =>
+                {
+                    b.HasOne("ExamenPOO2.API.Database.Entities.ClientEntity", "Client")
+                        .WithMany("Loans")
+                        .HasForeignKey("ClientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Client");
+                });
+
+            modelBuilder.Entity("ExamenPOO2.API.Database.Entities.ClientEntity", b =>
+                {
+                    b.Navigation("Loans");
+                });
+
+            modelBuilder.Entity("ExamenPOO2.API.Database.Entities.LoanEntity", b =>
+                {
+                    b.Navigation("AmortizationPlan");
                 });
 #pragma warning restore 612, 618
         }

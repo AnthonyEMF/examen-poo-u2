@@ -7,5 +7,8 @@ namespace ExamenPOO2.API.Dtos.Client
 	{
 		[Required(ErrorMessage = "Es requerido ingresar el campo de name.")]
 		public string Name { get; set; }
+
+		[Required(ErrorMessage = "Es requerido ingresar el campo de identify number.")]
+		public string IdentityNumber { get; set; }
 	}
 }

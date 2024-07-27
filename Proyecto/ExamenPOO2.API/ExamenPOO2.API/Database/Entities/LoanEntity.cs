@@ -6,25 +6,22 @@ namespace ExamenPOO2.API.Database.Entities
 	[Table("loans", Schema = "dbo")]
 	public class LoanEntity : BaseEntity
 	{
-		[Required(ErrorMessage = "Es requerido ingresar el campo de name.")]
-		[Column("name")]
-		public string Name { get; set; }
-
-		[Required(ErrorMessage = "Es requerido ingresar el campo de identity number.")]
-		[Column("identity_number")]
-		public int IdentityNumber { get; set; }
+		[Column("client_id")]
+		public Guid ClientId { get; set; }
+        [ForeignKey(nameof(ClientId))]
+        public ClientEntity Client { get; set; }
 
 		[Required(ErrorMessage = "Es requerido ingresar el campo de loan amount.")]
 		[Column("loan_amount")]
-		public int LoanAmount { get; set; }
+		public double LoanAmount { get; set; }
 
 		[Required(ErrorMessage = "Es requerido ingresar el campo de commission rate.")]
 		[Column("commission_rate")]
-		public int CommissionRate { get; set; }
+		public double CommissionRate { get; set; }
 
 		[Required(ErrorMessage = "Es requerido ingresar el campo de interest rate.")]
 		[Column("interest_rate")]
-		public int InterestRate { get; set; }
+		public double InterestRate { get; set; }
 
 		[Required(ErrorMessage = "Es requerido ingresar el campo de term.")]
 		[Column("term")]
@@ -38,6 +35,6 @@ namespace ExamenPOO2.API.Database.Entities
 		[Column("first_payment_date")]
 		public DateTime FirstPaymentDate { get; set; }
 
-		public virtual IEnumerable<ClientEntity> Client { get; set; }
+		public ICollection<AmortizationEntity> AmortizationPlan { get; set; }
 	}
 }
