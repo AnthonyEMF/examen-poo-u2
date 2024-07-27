@@ -1,5 +1,7 @@
 ﻿using ExamenPOO2.API.Database;
 using ExamenPOO2.API.Helpers;
+using ExamenPOO2.API.Services;
+using ExamenPOO2.API.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace ExamenPOO2.API
@@ -24,8 +26,7 @@ namespace ExamenPOO2.API
 			services.AddDbContext<ExamenPOOContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
 			// Add Custom Services
-			//services.AddTransient<ICategoriesService, CategoriesService>();
-			//services.AddTransient<IAuthService, AuthService>();
+			services.AddTransient<ILoansService, LoansService>();
 
 			// Add AutoMapper
 			services.AddAutoMapper(typeof(AutoMapperProfile));

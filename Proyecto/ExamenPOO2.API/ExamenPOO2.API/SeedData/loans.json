@@ -1,0 +1,13 @@
+[
+  {
+    "Id": "d853a98f-cdd2-47f8-b32d-c0ae6100b493",
+    "Name": "Juan Perez",
+    "IdentityNumber": "123456789",
+    "LoanAmount": 10000,
+    "CommissionRate": 2,
+    "InterestRate": 12,
+    "Term": 24,
+    "DisbursementDate": "2024-08-01",
+    "FirstPaymentDate": "2024-09-01"
+  }
+]

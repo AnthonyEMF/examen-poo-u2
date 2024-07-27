@@ -1,0 +1,13 @@
+[
+  {
+    "Id": "1dba4ae4-d69b-4c0d-bfde-67c80b9f0a48",
+    "InstallmentNumber": 1,
+    "PaymentDate": "2024-09-01",
+    "Days": 31,
+    "Interest": 100,
+    "Principal": 400,
+    "LevelPaymentWithoutSVSD": 500,
+    "LevelPaymentWithSVSD": 510,
+    "PrincipalBalance": 9600
+  }
+]

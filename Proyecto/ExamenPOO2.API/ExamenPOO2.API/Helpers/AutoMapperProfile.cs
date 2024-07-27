@@ -1,4 +1,7 @@
 ﻿using AutoMapper;
+using ExamenPOO2.API.Database.Entities;
+using ExamenPOO2.API.Dtos.Client;
+using ExamenPOO2.API.Dtos.Loan;
 
 namespace ExamenPOO2.API.Helpers
 {
@@ -6,14 +9,22 @@ namespace ExamenPOO2.API.Helpers
 	{
 		public AutoMapperProfile()
 		{
-			MapsForCategories();
+			MapsForLoans();
+			MapsForClients();
 		}
 
-		private void MapsForCategories()
+		private void MapsForLoans()
 		{
-			//CreateMap<CategoryEntity, CategoryDto>();
-			//CreateMap<CategoryCreateDto, CategoryEntity>();
-			//CreateMap<CategoryEditDto, CategoryEntity>();
+			CreateMap<LoanEntity, LoanDto>();
+			CreateMap<LoanCreateDto, LoanEntity>();
+			CreateMap<LoanEditDto, LoanEntity>();
+		}
+
+		private void MapsForClients()
+		{
+			CreateMap<ClientEntity, ClientDto>();
+			CreateMap<ClientCreateDto, ClientEntity>();
+			CreateMap<ClientEditDto, ClientEntity>();
 		}
 	}
 }

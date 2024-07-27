@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using ExamenPOO2.API.Database.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace ExamenPOO2.API.Database
 {
@@ -9,6 +10,8 @@ namespace ExamenPOO2.API.Database
             
         }
 
-		//public DbSet<CategoryEntity> Categories { get; set; }
+		public DbSet<LoanEntity> Loans { get; set; }
+		public DbSet<ClientEntity> Clients { get; set; }
+		public DbSet<AmortizationEntity> Amortizations { get; set; }
 	}
 }
